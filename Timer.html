@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Alarms & Clock</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" charset="utf-8"></script>
+  </head>
+
+  <body id="body" onload="loadTimers()">
+    <button class="addTimer" onclick="createTimer()">
+      <img src="icons/add.png"></img>
+    </button>
+    <button class="removeAll" onclick="showConfirm(this, removeAll, 'remove all')">
+      <img src="icons/remove.png"></img>
+    </button>
+    <div id="timers"></div>
+    <p id="testing"></p>
+    <div id="confirm" class="confirm">
+      <div id="confirm-box" class="confirm-box">
+        <p class="message-title"> Are you sure? </p>
+        <p class="message-text"> you want to delete this timer </p>
+        <button class="confirm-ok" > OK </button>
+        <button class="confirm-cancel"> Cancel </button>
+      </div>
+    </div>
+  </body>
+</html>

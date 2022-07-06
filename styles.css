@@ -1,0 +1,203 @@
+body {
+  text-align: center;
+  background-color: #f9f9f9;
+}
+#timers {
+  padding: 10px;
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+}
+.timer {
+  display: inline-block;
+  width: 90%;
+  max-width: 300px;
+  height: 320px;
+  padding: 5px;
+  margin: 5px;
+  outline: 0px solid #f9f9f9;
+  border-radius: 3px;
+  background-color: #ffffff;
+  font-family: calibri;
+  box-shadow: 0px 0px 10px lightgray;
+  transition: outline .1s, background-color .1s, box-shadow .1s;
+}
+.timer:hover {
+  background-color: #f9f9f9;
+  outline: 5px solid #f9f9f9;
+  box-shadow: 0px 0px 20px lightgray;
+}
+.title {
+  border-radius: 3px;
+  display: inline-block;
+  width: 90%;
+  height: 30px;
+  padding: 5px;
+  box-sizing: border-box;
+  float: left;
+  text-align: left;
+}
+.remove {
+  border-radius: 3px;
+  display: inline-block;
+  width: 10%;
+  height: 30px;
+  padding: 5px;
+  box-sizing: border-box;
+  transition: background-color .1s;
+}
+.remove:hover {
+  background-color: lightgray;
+}
+.time{
+  border: 10px solid lightgray;
+  border-radius: 1000px;
+  width: 90%;
+  max-width: 200px;
+  height: 200px;
+  margin: 10px auto;
+  line-height: 200px;
+  font-size: 36px;
+  font-family: Tahoma;
+}
+img {
+  width: 100%;
+  min-width: 15px;
+  height: 100%;
+  min-height: 15px;
+}
+button {
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0px 0px 10px lightgray;
+  transition: background-color .05s, outline .05s;
+}
+.removeAll, .addTimer {
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+}
+.addTimer{
+  border: 2px solid #1AC989;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+.addTimer:hover {
+  outline: 2px solid #1AC989;
+}
+.addTimer:active {
+  background-color: #1AC989;
+  outline: 0px solid #1AC989;
+}
+.removeAll{
+  border: 2px solid tomato;
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+}
+.removeAll:hover {
+  outline: 2px solid tomato;
+}
+.removeAll:active {
+  background-color: red;
+  outline: 0px solid red;
+}
+.timer button {
+  width: 35px;
+  height: 35px;
+  margin: 5px 10px;
+}
+.start {
+  border: 2px solid #1AC989;
+  padding: 5px 5px 5px 7px;
+}
+.start:hover {
+  outline: 2px solid #1AC989;
+}
+.start:active {
+  background-color: #1AC989;
+  outline: 0px solid #1AC989;
+}
+.pause {
+  border: 2px solid tomato;
+  padding: 5px;
+}
+.pause:hover {
+  outline: 2px solid tomato;
+}
+.pause:active {
+  background-color: red;
+  outline: 0px solid red;
+}
+.reset {
+  border: 2px solid #5A7EF8;
+  padding: 5px;
+}
+.reset:hover {
+  outline: 2px solid #5A7EF8;
+}
+.reset:active {
+  background-color: #5A7EF8;
+  outline: 0px solid #5A7EF8;
+}
+.confirm {
+  position: fixed;
+  left: 0%;
+  bottom: 0%;
+  right: 0%;
+  top: 0%;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgb(100, 100, 100, .5);
+}
+.confirm-box {
+  background-color: rgb(240, 240, 240);
+  box-shadow: 0px 0px 10px gray;
+  border-radius: 5px;
+  width: 30%;
+  min-width: 200px;
+  height: 200px;
+}
+.confirm-box p {
+  width: 90%;
+  padding: 10px;
+  margin: 10px auto;
+  font-family: Tahoma;
+}
+.confirm-box p.message-title{
+  font-size: 20px;
+  height: 10%;
+}
+.confirm-box p.message-text{
+  height: 30%;
+}
+button.confirm-ok {
+  border: 2px solid tomato;
+  border-radius: 5px;
+  width: 40%;
+  height: 30px;
+}
+button.confirm-ok:hover {
+  outline: 2px solid tomato;
+}
+button.confirm-ok:active {
+  background-color: red;
+  outline: 0px solid red;
+}
+button.confirm-cancel {
+  border: 2px solid #5A7EF8;
+  border-radius: 5px;
+  width: 40%;
+  height: 30px;
+}
+button.confirm-cancel:hover {
+  outline: 2px solid #5A7EF8;
+}
+button.confirm-cancel:active {
+  background-color: #5A7EF8;
+  outline: 0px solid #5A7EF8;
+}
