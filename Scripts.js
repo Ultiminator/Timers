@@ -241,6 +241,10 @@ function stopTimer(id) {
   timeDivEst.style.display = "none";
   let myaudio = id.parentNode.children[5];
   myaudio.remove();
+  // making stop button also rset the timer as it is finished
+  // first to get the reset button object to use it  for calling resetTimer
+  let resetButton = id.parentNode.children[4];
+  resetTimer(resetButton);
 }
 //reset the timer
 function resetTimer(id) {
