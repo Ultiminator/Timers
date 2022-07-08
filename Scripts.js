@@ -76,6 +76,11 @@ function addZero(i) {
   }
   return i.toString(); //is it necessary to convert to String?
 }
+// function to calculate the number of seconds in an object
+function calculateSecs(obj){
+  let x = obj.secs + (obj.mins * 60) + (obj.hours * 3600);
+  return x;
+}
 
 //function to create a timer element from timer info
 function addTimer(timerId, timerName, hours, mins, secs) {
@@ -163,6 +168,10 @@ function startTimer(id){
   id.parentNode.children[4].disabled = false;
   id.setAttribute("onclick", "pauseTimer(this)");
   //show estimated time
+  let estDate = new Date();
+  let seconds = calculateSecs(timerobj);
+  estDate.setSeconds(estDate.getSeconds() + seconds);
+  timeDivEst.innerHTML = estDate.getHours() + ":" + estDate.getMinutes();
   timeDivEst.style.display = "block";
   // set the interval
   timerobj.interval = setInterval(countering, 1000);
