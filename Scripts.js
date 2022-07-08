@@ -171,7 +171,8 @@ function startTimer(id){
   let estDate = new Date();
   let seconds = calculateSecs(timerobj);
   estDate.setSeconds(estDate.getSeconds() + seconds);
-  timeDivEst.innerHTML = estDate.getHours() + ":" + estDate.getMinutes();
+  timeDivEst.innerHTML = addZero(estDate.getHours()) + ":"
+                       + addZero(estDate.getMinutes());
   timeDivEst.style.display = "block";
   // set the interval
   timerobj.interval = setInterval(countering, 1000);
