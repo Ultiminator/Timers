@@ -49,16 +49,25 @@ body {
 .remove:hover {
   background-color: lightgray;
 }
-.time{
+.timeContainer{
   border: 10px solid lightgray;
   border-radius: 1000px;
   width: 90%;
   max-width: 200px;
   height: 200px;
   margin: 10px auto;
-  line-height: 200px;
-  font-size: 36px;
-  font-family: Tahoma;
+}
+.time {
+  margin: 40% auto 10%;
+  font-size: 40px;
+  line-height: 100%;
+}
+.estimated {
+  display: none;
+  border-radius: 1000px;
+  width: 40%;
+  margin: auto;
+  background-color: lightgray;
 }
 img {
   width: 100%;

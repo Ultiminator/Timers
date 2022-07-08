@@ -1,4 +1,6 @@
-// TODO: change alert fumction
+
+// TODO: add estimated time Div
+// TODO: add stop watch
 
 //I will save timers info in a map
 var timersMap = new Map();
@@ -100,13 +102,21 @@ function addTimer(timerId, timerName, hours, mins, secs) {
   timer.appendChild(remove);
 
   // create time viewer
+  const timeContainer = document.createElement("div");
+  timeContainer.className = "timeContainer";
   const time = document.createElement("div");
   time.className = "time";
   const timeTime = document.createTextNode(addZero(hours) + ":"
                                            + addZero(mins) + ":"
                                            + addZero(secs));
   time.appendChild(timeTime);
-  timer.appendChild(time);
+  const estimated = document.createElement("div");
+  estimated.className = "estimated";
+  const estimatedTime = document.createTextNode("12:00");
+  estimated.appendChild(estimatedTime);
+  timeContainer.appendChild(time);
+  timeContainer.appendChild(estimated);
+  timer.appendChild(timeContainer);
 
   // create start/pause button
   const startButton = document.createElement("button");
@@ -135,6 +145,8 @@ function addTimer(timerId, timerName, hours, mins, secs) {
 function startTimer(id){
   // get important objects
   let timeDiv = id.parentNode.children[2];
+  let timeDivTime = timeDiv.children[0];
+  let timeDivEst = timeDiv.children[1];
   let timerid = id.parentNode.id;
   let timerobj = timersMap.get(timerid);
   timerobj.counting = true;
@@ -150,7 +162,8 @@ function startTimer(id){
   id.children[0].src = "icons/pause.png";
   id.parentNode.children[4].disabled = false;
   id.setAttribute("onclick", "pauseTimer(this)");
-
+  //show estimated time
+  timeDivEst.style.display = "block";
   // set the interval
   timerobj.interval = setInterval(countering, 1000);
   function countering() {
@@ -185,13 +198,15 @@ function startTimer(id){
         }
       }
     }
-    timeDiv.innerHTML = addZero(timerobj.hours) + ":"
+    timeDivTime.innerHTML = addZero(timerobj.hours) + ":"
                       + addZero(timerobj.mins) + ":"
                       + addZero(timerobj.secs);
   }
 }
 // when pause button is clicked
 function pauseTimer(id){
+  let timeDiv = id.parentNode.children[2];
+  let timeDivEst = timeDiv.children[1];
   let timerid = id.parentNode.id;
   let timerobj = timersMap.get(timerid);
   timerobj.counting = false;
@@ -199,23 +214,27 @@ function pauseTimer(id){
   id.className = "start";
   id.children[0].src = "icons/start.png";
   id.setAttribute("onclick", "startTimer(this)");
-  id.parentNode.children[2].style.border = "10px solid lightgray";
+  timeDiv.style.border = "10px solid lightgray";
+  timeDivEst.style.display = "none";
 }
 //function to stop playing alarm playing sound
 function stopTimer(id) {
+  let timeDiv = id.parentNode.children[2];
+  let timeDivEst = timeDiv.children[1];
   let timerid = id.parentNode.id;
   let timerobj = timersMap.get(timerid);
   clearInterval(timerobj.interval);
   id.className = "start";
   id.children[0].src = "icons/start.png";
   id.setAttribute("onclick", "startTimer(this)");
-  id.parentNode.children[2].style.border = "10px solid lightgray";
+  timeDiv.style.border = "10px solid lightgray";
+  timeDivEst.style.display = "none";
   let myaudio = id.parentNode.children[5];
   myaudio.remove();
 }
 //reset the timer
 function resetTimer(id) {
-  let timeDiv = id.parentNode.children[2];
+  let timeDivTime = id.parentNode.children[2].children[0];
   let timerid = id.parentNode.id;
   let timerobj = timersMap.get(timerid);
   let savedTimerobj = savedMap.get(timerid);
@@ -223,7 +242,7 @@ function resetTimer(id) {
   timerobj.hours = savedTimerobj.hours;
   timerobj.mins = savedTimerobj.mins;
   timerobj.secs = savedTimerobj.secs;
-  timeDiv.innerHTML = addZero(savedTimerobj.hours) + ":"
+  timeDivTime.innerHTML = addZero(savedTimerobj.hours) + ":"
                     + addZero(savedTimerobj.mins) + ":"
                     + addZero(savedTimerobj.secs);
   // remove the timer from saved map to free some memory
