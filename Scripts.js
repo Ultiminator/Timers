@@ -245,6 +245,7 @@ function stopTimer(id) {
 //reset the timer
 function resetTimer(id) {
   let timeDivTime = id.parentNode.children[2].children[0];
+  let timeDivEst = id.parentNode.children[2].children[1];
   let timerid = id.parentNode.id;
   let timerobj = timersMap.get(timerid);
   let savedTimerobj = savedMap.get(timerid);
@@ -255,6 +256,12 @@ function resetTimer(id) {
   timeDivTime.innerHTML = addZero(savedTimerobj.hours) + ":"
                     + addZero(savedTimerobj.mins) + ":"
                     + addZero(savedTimerobj.secs);
+  //calculate estimated time again
+  let estDate = new Date();
+  let seconds = calculateSecs(timerobj);
+  estDate.setSeconds(estDate.getSeconds() + seconds);
+  timeDivEst.innerHTML = addZero(estDate.getHours()) + ":"
+                       + addZero(estDate.getMinutes());
   // remove the timer from saved map to free some memory
   // but only if not counting to avoid adding it again during resuming
   if (!timerobj.counting) {
