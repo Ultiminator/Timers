@@ -194,7 +194,6 @@ function startTimer(id){
           timerobj.counting = false;
           //try playing audio
           let myaudio = document.createElement("audio");
-          myaudio.id = "myaudio";
           let audioSource = document.createElement("source");
           audioSource.src = "media/Alarm.mp3";
           audioSource.setAttribute("type","audio/mpeg");
@@ -255,7 +254,6 @@ function resetTimer(id) {
   let timerid = id.parentNode.id;
   let timerobj = timersMap.get(timerid);
   let savedTimerobj = savedMap.get(timerid);
-  timerobj.name = savedTimerobj.name;
   timerobj.hours = savedTimerobj.hours;
   timerobj.mins = savedTimerobj.mins;
   timerobj.secs = savedTimerobj.secs;
