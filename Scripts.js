@@ -9,12 +9,12 @@ var savedMap = new Map();
 // load saved timers onloadin the document body
 function loadTimers() {
   // create some initial timers
-  timersMap.set("5mins", {name: "5mins",hours: 0, mins: 5, secs: 0,
-                          counting: false, interval: 0});
-  timersMap.set("1min", {name: "1min", hours: 0, mins: 1, secs: 0,
-                         counting: false, interval: 0});
-  timersMap.set("10secs", {name: "10secs", hours: 0, mins: 0, secs: 10,
-                           counting: false, interval: 0});
+  timersMap.set("5555", {id: "5555", name: "5mins",hours: 0, mins: 5,
+                          secs: 0, counting: false, interval: 0});
+  timersMap.set("1111", {id: "1111", name: "1min", hours: 0, mins: 1,
+                         secs: 0, counting: false, interval: 0});
+  timersMap.set("1010", {id: "1010", name: "10secs", hours: 0, mins: 0,
+                           secs: 10, counting: false, interval: 0});
   timersMap.forEach(function(value, key) {
     // call a function that creates Html elements for each timer
     addTimer(key, value.name, value.hours, value.mins, value.secs);
@@ -63,8 +63,8 @@ function createTimer() {
   mins = d.getMinutes();
   secs = d.getSeconds();
   //put them into an object and add it to the timers map
-  timersMap.set(timerId, {name: timerId, hours: hours, mins: mins, secs: secs,
-                       counting: false, interval: 0});
+  timersMap.set(timerId, {id: timerId, name: timerId, hours: hours, mins: mins,
+                          secs: secs, counting: false, interval: 0});
   //call to create a timer element
   addTimer(timerId, timerId, hours, mins, secs);
 }
@@ -100,7 +100,8 @@ function addTimer(timerId, timerName, hours, mins, secs) {
   // create remove button
   const remove = document.createElement("div");
   remove.className = "remove";
-  remove.setAttribute("onclick", "showConfirm(this, removeTimer, 'remove one')");
+  remove.setAttribute("onclick",
+                      "showConfirm(this, removeTimer, 'remove one')");
   const removeImg = document.createElement("img");
   removeImg.src = "icons/remove.png";
   remove.appendChild(removeImg);
@@ -158,8 +159,9 @@ function startTimer(id){
   //save the original time into the savedmap to use it during reseting
   //the if condition is to avoid changing it after some counting and pausing
   if (!savedMap.has(timerid)) {
-    savedMap.set(timerid, {name: timerobj.name, hours: timerobj.hours,
-                           mins: timerobj.mins, secs: timerobj.secs});
+    savedMap.set(timerid, {id: timerobj.id, name: timerobj.name,
+                           hours: timerobj.hours, mins: timerobj.mins,
+                           secs: timerobj.secs});
   }
   //change some styles
   timeDiv.style.border = "10px solid #1AC989";
@@ -175,8 +177,8 @@ function startTimer(id){
                        + addZero(estDate.getMinutes());
   timeDivEst.style.display = "block";
   // set the interval
-  timerobj.interval = setInterval(countering, 1000);
-  function countering() {
+  timerobj.interval = setInterval(counting, 1000);
+  function counting() {
     if (timerobj.secs > 0) {
       timerobj.secs = timerobj.secs - 1;
     }else {
@@ -186,7 +188,7 @@ function startTimer(id){
       }else {
         if (timerobj.hours > 0) {
           timerobj.hours = timerobj.hours - 1;
-          timerobj.mins = 59;
+          timerobj.mins = 59; // TODO: i think there is a bug here
         }else {
           clearInterval(timerobj.interval);
           timerobj.counting = false;
@@ -297,6 +299,8 @@ function showConfirm(id, callback, type) {
                                      + timerobj.name;
   }
   // set onclick functions and show the message
+  okBtn.addEventListener("click", okFunction);
+  cancelBtn.addEventListener("click", cancelFunction);
   function okFunction() {
     callback(id);
     okBtn.removeEventListener("click", okFunction);
@@ -308,8 +312,5 @@ function showConfirm(id, callback, type) {
     cancelBtn.removeEventListener("click", cancelFunction);
     confirm.style.display = "none";
   }
-  okBtn.addEventListener("click", okFunction);
-  cancelBtn.addEventListener("click", cancelFunction);
-
   confirm.style.display = "flex";
 }
