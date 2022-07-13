@@ -167,8 +167,9 @@ button {
   background-color: rgb(240, 240, 240);
   box-shadow: 0px 0px 10px gray;
   border-radius: 5px;
-  width: 30%;
+  width: 40%;
   min-width: 200px;
+  max-width: 400px;
   height: 200px;
 }
 .confirm-box p {
@@ -207,6 +208,97 @@ button.confirm-cancel:hover {
   outline: 2px solid #5A7EF8;
 }
 button.confirm-cancel:active {
+  background-color: #5A7EF8;
+  outline: 0px solid #5A7EF8;
+}
+#Add-box {
+  height: 360px;
+}
+.timerName {
+  width: 80%;
+  margin: auto auto 10px;
+  height: 30px;
+  display: flex;
+  border-radius: 3px;
+  background-color: #5A7EF8;
+  color: white;
+  font-family: calibri;
+  box-shadow: 0px 0px 3px 0px lightgray;
+}
+.timerName label {
+  width: 30%;
+  height: 100%;
+  line-height: 30px;
+}
+.timerName input {
+  width: 70%;
+  height: 100%;
+  padding: 5px 10px;
+  font-size: 15px;
+  font-family: calibri;
+  border: none;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  box-sizing: border-box;
+}
+.time-picker {
+  width: 80%;
+  margin: 20px auto;
+  font-size: 30px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 0px lightgray;
+}
+.segment{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 15px;
+  line-height: 55px;
+}
+.time-picker button {
+  border-radius: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  font-size: 30px;
+  width: 30%;
+  max-width: 70px;
+  height: 50px;
+}
+.time-picker input {
+  border: none;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  width: 30%;
+  max-width: 70px;
+  height: 60px;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 30px;
+}
+button.picker-ok {
+  border: 2px solid #1AC989;
+  border-radius: 5px;
+  width: 40%;
+  height: 30px;
+}
+button.picker-ok:hover {
+  outline: 2px solid #1AC989;
+}
+button.picker-ok:active {
+  background-color: #1AC989;
+  outline: 0px solid #1AC989;
+}
+button.picker-cancel {
+  border: 2px solid #5A7EF8;
+  border-radius: 5px;
+  width: 40%;
+  height: 30px;
+}
+button.picker-cancel:hover {
+  outline: 2px solid #5A7EF8;
+}
+button.picker-cancel:active {
   background-color: #5A7EF8;
   outline: 0px solid #5A7EF8;
 }

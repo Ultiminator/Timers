@@ -5,6 +5,8 @@
 //I will save timers info in a map
 var timersMap = new Map();
 var savedMap = new Map();
+var gInterval = "";
+
 
 // load saved timers onloadin the document body
 function loadTimers() {
@@ -45,32 +47,37 @@ function removeAll(item){
   timersMap.clear();
   savedMap.clear();
 }
-
+function showAdding(){
+  document.getElementById("AddWindow").style.display = "flex";
+}
+function cancelAdding() {
+  document.getElementById("AddWindow").style.display = "none";
+}
 function createTimer() {
   let timerId = "";
-  let name = "";
-  let hours = 0;
-  let mins = 0;
-  let secs = 0;
+  let name = document.getElementById("timerName").value;
+  let hours = Number(document.getElementById("hours").value);
+  let mins = Number(document.getElementById("mins").value);
+  let secs = Number(document.getElementById("secs").value);
   //create Name
   for (let i = 0; i < 10; i++) {
     let random = Math.floor(Math.random() * 26) + 97;
     timerId += String.fromCharCode(random);
   }
-  //creat date
-  let d = new Date();
-  hours = d.getHours();
-  mins = d.getMinutes();
-  secs = d.getSeconds();
   //put them into an object and add it to the timers map
-  timersMap.set(timerId, {id: timerId, name: timerId, hours: hours, mins: mins,
+  timersMap.set(timerId, {id: timerId, name: name, hours: hours, mins: mins,
                           secs: secs, counting: false, interval: 0});
   //call to create a timer element
-  addTimer(timerId, timerId, hours, mins, secs);
+  addTimer(timerId, name, hours, mins, secs);
+  cancelAdding();
 }
 
 //function to add 0 before numbers less than 10
 function addZero(i) {
+  i = Number(i);
+  if (i < 0){
+    i = 0;
+  }
   if (i < 10) {
     i = "0" + i;
   }
@@ -118,7 +125,7 @@ function addTimer(timerId, timerName, hours, mins, secs) {
   time.appendChild(timeTime);
   const estimated = document.createElement("div");
   estimated.className = "estimated";
-  const estimatedTime = document.createTextNode("12:00");
+  const estimatedTime = document.createTextNode("");
   estimated.appendChild(estimatedTime);
   timeContainer.appendChild(time);
   timeContainer.appendChild(estimated);
@@ -311,4 +318,45 @@ function showConfirm(id, callback, type) {
     confirm.style.display = "none";
   }
   confirm.style.display = "flex";
+}
+// incrementing time picker
+function upvalue(inputId, btn){
+  let input = document.getElementById(inputId);
+  let value = input.value;
+  let max = input.max;
+  function incrementUp(){
+    if (value != max){
+      value ++;
+    }else {
+      value = 0;
+    }
+    input.value = addZero(value);
+  }
+  incrementUp();//calling it to ensure it runs at least one time when clicking
+  btn.onmouseup = function() { clearInterval(gInterval) };
+  btn.onmouseout = function() { clearInterval(gInterval) };
+  gInterval = setTimeout(function() {
+    clearTimeout(gInterval);
+    gInterval = setInterval(incrementUp, 100);
+  }, 300);
+}
+function downvalue(inputId, btn){
+  let input = document.getElementById(inputId);
+  let value = input.value;
+  let max = input.max;
+  function incrementUp(){
+    if (value != 0){
+      value --;
+    }else {
+      value = max;
+    }
+    input.value = addZero(value);
+  }
+  incrementUp();//calling it to ensure it runs at least one time when clicking
+  btn.onmouseup = function() { clearInterval(gInterval) };
+  btn.onmouseout = function() { clearInterval(gInterval) };
+  gInterval = setTimeout(function() {
+    clearTimeout(gInterval);
+    gInterval = setInterval(incrementUp, 100);
+  }, 300);
 }

@@ -10,20 +10,47 @@
   </head>
 
   <body id="body" onload="loadTimers()">
-    <button class="addTimer" onclick="createTimer()">
+    <button class="addTimer" onclick="showAdding()">
       <img src="icons/add.png"></img>
     </button>
     <button class="removeAll" onclick="showConfirm(this, removeAll, 'remove all')">
       <img src="icons/remove.png"></img>
     </button>
     <div id="timers"></div>
-    <p id="testing"></p>
     <div id="confirm" class="confirm">
       <div id="confirm-box" class="confirm-box">
         <p class="message-title"> Are you sure? </p>
         <p class="message-text"> you want to delete this timer </p>
         <button class="confirm-ok" > OK </button>
         <button class="confirm-cancel"> Cancel </button>
+      </div>
+    </div>
+    <div id="AddWindow" class="confirm">
+      <div id="Add-box" class="confirm-box">
+        <p class="message-title"> Add new timer: </p>
+        <div class="timerName">
+          <label for="timerName">Name:</label>
+          <input id="timerName" type="text" value="Name">
+        </div>
+        <div class="time-picker">
+          <div class="segment up-buttons">
+            <button onmousedown="upvalue('hours', this)"> + </button>
+            <button onmousedown="upvalue('mins', this)"> + </button>
+            <button onmousedown="upvalue('secs', this)"> + </button>
+          </div>
+          <div class="segment">
+            <input id="hours" type="text" value=00 max=99 maxlength="2">:
+            <input id="mins" type="text" value=01 max=59 maxlength="2">:
+            <input id="secs" type="text" value=00 max=59 maxlength="2">
+          </div>
+          <div class="segment down-buttons">
+            <button onmousedown="downvalue('hours', this)"> - </button>
+            <button onmousedown="downvalue('mins', this)"> - </button>
+            <button onmousedown="downvalue('secs', this)"> - </button>
+          </div>
+        </div>
+        <button class="picker-ok" onclick="createTimer()"> OK </button>
+        <button class="picker-cancel" onclick="cancelAdding()"> Cancel </button>
       </div>
     </div>
   </body>
